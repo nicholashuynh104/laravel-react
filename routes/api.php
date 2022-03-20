@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExpenseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/expenses', 'ExpenseController@index')->name('expenses.all');
-
-Route::post('/expenses', 'ExpenseController@store')->name('expenses.store');
-
-Route::get('/expenses/{expense}', 'ExpenseController@show')->name('expenses.show');
-
-Route::put('/expenses/{expense}', 'ExpenseController@update')->name('expenses.update');
-
-Route::delete('/expenses/{expense}', 'ExpenseController@destory')->name('expenses.destroy');
+Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses.all');
+Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store');
+Route::get('/expenses/{expense}', [ExpenseController::class, 'show'])->name('expenses.show');
+Route::put('/expenses/{expense}', [ExpenseController::class, 'update'])->name('expenses.update');
+Route::delete('/expenses/{expense}', [ExpenseController::class, 'destory'])->name('expenses.destroy');
