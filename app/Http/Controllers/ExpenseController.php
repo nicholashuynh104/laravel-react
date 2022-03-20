@@ -18,8 +18,6 @@ class ExpenseController extends Controller
         return response()->json($expenses);
     }
 
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -70,9 +68,9 @@ class ExpenseController extends Controller
             'amount' => 'required',
             'description' => 'required' //optional if you want this to be required
         ]);
-        $expense->name = $request->name();
-        $expense->amount = $request->amount();
-        $expense->description = $request->description();
+        $expense->name = $request->name;
+        $expense->amount = $request->amount;
+        $expense->description = $request->description;
         $expense->save();
 
         return response()->json([
